@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'd2b4cd7fc06adb8cf2bd4879b5dbc6733a6566be',
+    'reference' => '03ad524eda0516d67c424c2d4b65fb90c1cd94cd',
     'name' => 'afragen/skip-updates',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'd2b4cd7fc06adb8cf2bd4879b5dbc6733a6566be',
+      'reference' => '03ad524eda0516d67c424c2d4b65fb90c1cd94cd',
     ),
   ),
 );

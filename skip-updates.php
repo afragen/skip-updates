@@ -16,7 +16,7 @@
  * License:           MIT
  * Network:           true
  * Domain Path:       /languages
- * Text Domain:       Skip updates for selected dot org plugins or themes.
+ * Text Domain:       skip-updates
  * GitHub Plugin URI: https://github.com/afragen/skip-updates
  * Primary Branch:    main
  * Requires at least: 5.2
