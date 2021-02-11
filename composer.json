@@ -1,0 +1,32 @@
+{
+  "name": "afragen/skip-updates",
+  "description": "Skip updates for selected dot org plugins or themes.",
+  "type": "wordpress-plugin",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Andy Fragen",
+      "email": "andy@thefragens.com",
+      "homepage": "https://thefragens.com",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/afragen/skip-updates/issues",
+    "source": "https://github.com/afragen/skip-updates"
+  },
+  "prefer-stable": true,
+  "require": {
+    "php": ">=5.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "Fragen\\Skip_Updates\\": "src/Skip_Updates/"
+    }
+  },
+  "scripts": {
+    "post-update-cmd": [
+      "wp i18n make-pot . languages/skip-updates.pot"
+    ]
+  }
+}
