@@ -432,7 +432,7 @@ class SU_List_Table extends \WP_List_Table {
 	 */
 	public function usort_reorder( $a, $b ) {
      // phpcs:disable WordPress.Security.NonceVerification.Recommended
-		$orderby = ( ! empty( $_REQUEST['orderby'] ) ) ? sanitize_text_field( wp_unslash( $_REQUEST['orderby'] ) ) : 'slug'; // If no sort, default to site.
+		$orderby = ( ! empty( $_REQUEST['orderby'] ) ) ? sanitize_text_field( wp_unslash( $_REQUEST['orderby'] ) ) : 'type'; // If no sort, default to site.
 		$order   = ( ! empty( $_REQUEST['order'] ) ) ? sanitize_text_field( wp_unslash( $_REQUEST['order'] ) ) : 'asc'; // If no order, default to asc.
      // phpcs:enable
 		$result = strcmp( $a[ $orderby ], $b[ $orderby ] ); // Determine sort order.
