@@ -32,14 +32,14 @@ class Bootstrap {
 	/**
 	 * Holds main plugin file.
 	 *
-	 * @var $file
+	 * @var string $file
 	 */
 	protected $file;
 
 	/**
 	 * Holds main plugin directory.
 	 *
-	 * @var $dir
+	 * @var string $dir
 	 */
 	protected $dir;
 

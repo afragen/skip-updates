@@ -18,20 +18,19 @@ class Settings {
 	/**
 	 * Holds the values for options.
 	 *
-	 * @var array
+	 * @var array $options
 	 */
 	public static $options;
 
 	/**
 	 * Supported types.
 	 *
-	 * @var array
+	 * @var array $types
 	 */
 	public static $types = [
 		'plugin',
 		'theme',
 	];
-
 
 	/**
 	 * Settings constructor.
