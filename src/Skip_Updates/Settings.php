@@ -36,13 +36,6 @@ class Settings {
 	 * Settings constructor.
 	 */
 	public function __construct() {
-		$this->load_options();
-	}
-
-	/**
-	 * Load site options.
-	 */
-	private function load_options() {
 		self::$options = get_site_option( 'skip_updates', [] );
 	}
 
