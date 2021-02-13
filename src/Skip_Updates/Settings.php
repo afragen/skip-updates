@@ -206,10 +206,10 @@ class Settings {
 	public function callback_field( $args ) {
 		?>
 		<label for="<?php esc_attr_e( $args['id'] ); ?>">
-			<input type="text" style="width:50%;" id="<?php esc_attr( $args['id'] ); ?>" name="skip_updates[<?php esc_attr_e( $args['setting'] ); ?>]" value="">
+			<input type="text" style="width:50%;" id="<?php esc_attr( $args['id'] ); ?>" name="skip_updates[<?php esc_attr_e( $args['setting'] ); ?>]" value="" placeholder="plugin-slug/plugin-file.php">
 			<br>
 			<span class="description">
-		<?php esc_html_e( 'Ensure proper slug for plugin or theme.', 'skip-updates' ); ?>
+			<?php esc_html_e( 'Ensure proper slug for plugin or theme.', 'skip-updates' ); ?>
 			</span>
 		</label>
 		<?php
