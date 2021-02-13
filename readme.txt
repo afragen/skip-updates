@@ -1,11 +1,11 @@
 # Skip Updates
 
-* Contributors: [Andy Fragen](https://github.com/afragen), [contributors](https://github.com/afragen/skip-updates/graphs/contributors)
+* Contributors: afragen
 * Tags: plugin, theme, update
 * Requires at least: 5.2
 * Requires PHP: 5.6
 * Tested up to: 5.6
-* Stable tag: x.x
+* Stable tag: 0.2.0
 * Donate link: http://thefragens.com/github-updater-donate
 * License: MIT
 
@@ -48,3 +48,10 @@ Above are examples for a plugin or a theme. Please notice the diffence in the `s
 
 ## Development
 PRs are welcome against the `develop` branch.
+
+## Changelog
+
+Please see the Github repository: [CHANGELOG.md](https://github.com/afragen/skip-updates/blob/main/CHANGES.md).
+
+#### 0.2.0 / 2021-02-12
+* initial commit

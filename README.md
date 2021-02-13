@@ -48,3 +48,7 @@ Above are examples for a plugin or a theme. Please notice the diffence in the `s
 
 ## Development
 PRs are welcome against the `develop` branch.
+
+## Changelog
+
+Please see the Github repository: [CHANGELOG.md](https://github.com/afragen/skip-updates/blob/main/CHANGES.md).
