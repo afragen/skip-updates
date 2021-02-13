@@ -16,39 +16,27 @@ namespace Fragen\Skip_Updates;
 class Settings {
 
 	/**
-	 * Holds the values for additions settings.
+	 * Holds the values for options.
 	 *
-	 * @deprecated 9.1.0
-	 *
-	 * @var array $option_remote
+	 * @var array $options
 	 */
-	public static $options_additions;
+	public static $options;
 
 	/**
 	 * Supported types.
 	 *
-	 * @deprecated 9.1.0
-	 *
-	 * @var array $addition_types
+	 * @var array $types
 	 */
-	public static $addition_types = [
+	public static $types = [
 		'plugin',
 		'theme',
 	];
-
 
 	/**
 	 * Settings constructor.
 	 */
 	public function __construct() {
-		$this->load_options();
-	}
-
-	/**
-	 * Load site options.
-	 */
-	private function load_options() {
-		self::$options_additions = get_site_option( 'skip_updates', [] );
+		self::$options = get_site_option( 'skip_updates', [] );
 	}
 
 	/**
@@ -61,7 +49,7 @@ class Settings {
 	}
 
 	/**
-	 * Add options page.
+	 * Add plugin menu.
 	 */
 	public function add_plugin_menu() {
 		$parent     = is_multisite() ? 'settings.php' : 'options-general.php';
@@ -129,7 +117,6 @@ class Settings {
 		?>
 			</form>
 		<?php
-		// }
 	}
 
 	/**
@@ -211,10 +198,10 @@ class Settings {
 	public function callback_field( $args ) {
 		?>
 		<label for="<?php esc_attr_e( $args['id'] ); ?>">
-			<input type="text" style="width:50%;" id="<?php esc_attr( $args['id'] ); ?>" name="skip_updates[<?php esc_attr_e( $args['setting'] ); ?>]" value="">
+			<input type="text" style="width:50%;" id="<?php esc_attr( $args['id'] ); ?>" name="skip_updates[<?php esc_attr_e( $args['setting'] ); ?>]" value="" placeholder="plugin-slug/plugin-file.php">
 			<br>
 			<span class="description">
-		<?php esc_html_e( 'Ensure proper slug for plugin or theme.', 'skip-updates' ); ?>
+			<?php esc_html_e( 'Ensure proper slug for plugin or theme.', 'skip-updates' ); ?>
 			</span>
 		</label>
 		<?php
@@ -233,7 +220,7 @@ class Settings {
 		<label for="<?php esc_attr_e( $args['id'] ); ?>">
 		<select id="<?php esc_attr_e( $args['id'] ); ?>" name="skip_updates[<?php esc_attr_e( $args['setting'] ); ?>]">
 		<?php
-		foreach ( self::$addition_types as $item ) {
+		foreach ( self::$types as $item ) {
 			$selected = ( 'plugin' === $item ) ? 'selected="selected"' : '';
 			echo '<option value="' . esc_attr( $item ) . '" $selected>' . esc_attr( $item ) . '</option>';
 		}
