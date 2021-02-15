@@ -32,17 +32,15 @@ The `"slug"` element is either the plugin slug or the theme stylesheet slug.
 
 ### Examples
 
-```
-type: plugin
-slug: akismet/akismet.php
-```
+    type: plugin
+    slug: akismet/akismet.php
+
 
 or
 
-```
-type: theme
-slug: twentynineteen
-```
+    type: theme
+    slug: twentynineteen
+
 
 Above are examples for a plugin or a theme. Please notice the diffence in the `slug` format.
 
