@@ -1,4 +1,5 @@
 #### [unreleased]
+* check for proper plugin/theme slug on save
 
 #### 0.3.0 / 2021-02-16
 * change update transient filter to default priority
