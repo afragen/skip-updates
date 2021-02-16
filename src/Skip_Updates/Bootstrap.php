@@ -60,8 +60,8 @@ class Bootstrap {
 	 * @return bool|void
 	 */
 	public function run() {
-		add_filter( 'site_transient_update_plugins', [ $this, 'update_site_transient' ], 99, 1 );
-		add_filter( 'site_transient_update_themes', [ $this, 'update_site_transient' ], 99, 1 );
+		add_filter( 'site_transient_update_plugins', [ $this, 'update_site_transient' ], 10, 1 );
+		add_filter( 'site_transient_update_themes', [ $this, 'update_site_transient' ], 10, 1 );
 
 		( new Settings() )->load_hooks();
 	}
