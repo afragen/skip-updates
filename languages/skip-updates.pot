@@ -2,20 +2,20 @@
 # This file is distributed under the same license as the Skip Updates plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Skip Updates 0.1\n"
+"Project-Id-Version: Skip Updates 0.4.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/skip-updates\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-02-11T23:59:25+00:00\n"
+"POT-Creation-Date: 2021-02-17T18:02:59+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: skip-updates\n"
 
 #. Plugin Name of the plugin
-#: src/Skip_Updates/Settings.php:147
+#: src/Skip_Updates/Settings.php:139
 msgid "Skip Updates"
 msgstr ""
 
@@ -31,28 +31,28 @@ msgstr ""
 msgid "Andy Fragen"
 msgstr ""
 
-#: src/Skip_Updates/Settings.php:72
+#: src/Skip_Updates/Settings.php:60
 msgid "Skip Updates Settings"
 msgstr ""
 
-#: src/Skip_Updates/Settings.php:73
+#: src/Skip_Updates/Settings.php:61
 msgctxt "Menu item"
 msgid "Skip Updates"
 msgstr ""
 
-#: src/Skip_Updates/Settings.php:154
+#: src/Skip_Updates/Settings.php:146
 msgid "Repository Type"
 msgstr ""
 
-#: src/Skip_Updates/Settings.php:166
+#: src/Skip_Updates/Settings.php:158
 msgid "Repository Slug"
 msgstr ""
 
-#: src/Skip_Updates/Settings.php:200
+#: src/Skip_Updates/Settings.php:192
 msgid "If there are dot org plugins or themes that you do not want to show updates, add them here."
 msgstr ""
 
-#: src/Skip_Updates/Settings.php:217
+#: src/Skip_Updates/Settings.php:209
 msgid "Ensure proper slug for plugin or theme."
 msgstr ""
 

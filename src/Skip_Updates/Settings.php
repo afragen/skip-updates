@@ -73,6 +73,7 @@ class Settings {
 		$post_data = wp_unslash( $_POST );
 		$options   = get_site_option( 'skip_updates', [] );
 		$duplicate = false;
+		$bad_input = false;
 		if ( isset( $post_data['option_page'] )
 			&& 'skip_updates' === $post_data['option_page']
 		) {
@@ -83,13 +84,17 @@ class Settings {
 			$new_options = $this->sanitize( $new_options );
 
 			foreach ( $options as $option ) {
-				$duplicate = in_array( $new_options[0]['ID'], $option, true );
-				if ( $duplicate ) {
+				$is_plugin_slug = preg_match( '@/@', $new_options[0]['slug'] );
+				$bad_input      = 'plugin' === $new_options[0]['type'] && ! $is_plugin_slug;
+				$bad_input      = ! $bad_input ? 'theme' === $new_options[0]['type'] && $is_plugin_slug : $bad_input;
+				$duplicate      = in_array( $new_options[0]['ID'], $option, true );
+				if ( $duplicate || $bad_input ) {
+					$post_data['action'] = 'update-failed';
 					break;
 				}
 			}
 
-			if ( ! $duplicate ) {
+			if ( ! $duplicate && ! $bad_input ) {
 				$options = array_merge( $options, $new_options );
 				update_site_option( 'skip_updates', $options );
 			}
@@ -215,7 +220,6 @@ class Settings {
 	 * @return void
 	 */
 	public function callback_dropdown( $args ) {
-		$options['type'] = [ 'plugin' ];
 		?>
 		<label for="<?php esc_attr_e( $args['id'] ); ?>">
 		<select id="<?php esc_attr_e( $args['id'] ); ?>" name="skip_updates[<?php esc_attr_e( $args['setting'] ); ?>]">
@@ -248,7 +252,7 @@ class Settings {
 
 		$redirect_url = is_multisite() ? network_admin_url( 'settings.php' ) : admin_url( 'options-general.php' );
 
-		if ( $update ) {
+		if ( ! empty( $post_data ) ) {
 			$location = add_query_arg(
 				[
 					'page'    => 'skip-updates',
