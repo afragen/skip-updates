@@ -252,7 +252,7 @@ class Settings {
 
 		$redirect_url = is_multisite() ? network_admin_url( 'settings.php' ) : admin_url( 'options-general.php' );
 
-		if ( $update ) {
+		if ( ! empty( $post_data ) ) {
 			$location = add_query_arg(
 				[
 					'page'    => 'skip-updates',
