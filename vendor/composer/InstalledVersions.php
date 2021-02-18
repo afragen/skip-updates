@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'cc98303ea27e17e6cb173a6949d42bb7cbcd5de7',
+    'reference' => '74d8359df6978ec0a04292affa59c38ca0bb726f',
     'name' => 'afragen/skip-updates',
   ),
   'versions' => 
@@ -42,7 +42,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'cc98303ea27e17e6cb173a6949d42bb7cbcd5de7',
+      'reference' => '74d8359df6978ec0a04292affa59c38ca0bb726f',
     ),
   ),
 );

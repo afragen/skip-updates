@@ -5,7 +5,7 @@
 * Requires at least: 5.2
 * Requires PHP: 5.6
 * Tested up to: 5.6
-* Stable tag: 0.4.0
+* Stable tag: 0.5.0
 * Donate link: http://thefragens.com/github-updater-donate
 * License: MIT
 
@@ -50,6 +50,9 @@ PRs are welcome against the `develop` branch.
 ## Changelog
 
 Please see the Github repository: [CHANGELOG.md](https://github.com/afragen/skip-updates/blob/main/CHANGES.md).
+
+#### 0.5.0
+* fix redirect on save to only redirect on correct option page
 
 #### 0.4.0 / 2021-02-17
 * check data validation for proper plugin/theme slug on save
