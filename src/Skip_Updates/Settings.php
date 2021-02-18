@@ -89,12 +89,12 @@ class Settings {
 				$bad_input      = ! $bad_input ? 'theme' === $new_options[0]['type'] && $is_plugin_slug : $bad_input;
 				$duplicate      = in_array( $new_options[0]['ID'], $option, true );
 				if ( $duplicate || $bad_input ) {
-					$post_data['action'] = 'update-failed';
+					$post_data['action'] = false;
 					break;
 				}
 			}
 
-			if ( ! $duplicate && ! $bad_input ) {
+			if ( ! $duplicate && ! $bad_input && ! empty( $new_options[0]['slug'] ) ) {
 				$options = array_merge( $options, $new_options );
 				update_site_option( 'skip_updates', $options );
 			}
@@ -243,16 +243,15 @@ class Settings {
 		$update = false;
 
     	 // phpcs:disable WordPress.Security.NonceVerification.Missing
-		if ( ( isset( $post_data['action'] ) && 'update' === $post_data['action'] )
-			&& ( isset( $post_data['option_page'] ) && 'skip_updates' === $post_data['option_page'] )
-		) {
+		$is_option_page = isset( $post_data['option_page'] ) && 'skip_updates' === $post_data['option_page'];
+		if ( ( isset( $post_data['action'] ) && 'update' === $post_data['action'] ) && $is_option_page ) {
 			$update = true;
 		}
  	    // phpcs:enable
 
 		$redirect_url = is_multisite() ? network_admin_url( 'settings.php' ) : admin_url( 'options-general.php' );
 
-		if ( ! empty( $post_data ) ) {
+		if ( $is_option_page ) {
 			$location = add_query_arg(
 				[
 					'page'    => 'skip-updates',
