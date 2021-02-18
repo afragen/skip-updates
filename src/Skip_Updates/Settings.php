@@ -87,6 +87,7 @@ class Settings {
 				$is_plugin_slug = preg_match( '@/@', $new_options[0]['slug'] );
 				$bad_input      = 'plugin' === $new_options[0]['type'] && ! $is_plugin_slug;
 				$bad_input      = ! $bad_input ? 'theme' === $new_options[0]['type'] && $is_plugin_slug : $bad_input;
+				$bad_input      = $bad_input || empty( $new_options[0]['slug'] );
 				$duplicate      = in_array( $new_options[0]['ID'], $option, true );
 				if ( $duplicate || $bad_input ) {
 					$post_data['action'] = false;
@@ -94,7 +95,7 @@ class Settings {
 				}
 			}
 
-			if ( ! $duplicate && ! $bad_input && ! empty( $new_options[0]['slug'] ) ) {
+			if ( ! $duplicate && ! $bad_input ) {
 				$options = array_merge( $options, $new_options );
 				update_site_option( 'skip_updates', $options );
 			}
