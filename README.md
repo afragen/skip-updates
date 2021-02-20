@@ -15,7 +15,7 @@ A plugin that allows for adding installed dot org hosted plugins or themes to sk
 
 Have you ever had a custom plugin or theme accidentally overwritten by an update from a wp.org plugin or theme with an identical slug? There are several very old Trac tickets describing this behavior and are still waiting for a solution in core. That solution is now available.
 
-This is a plugin that will add a Settings menu, **Skip Updates**, where plugins or themes may be added by selecting the type of either plugin or theme and entering the slug.
+This is a plugin that will add a Settings menu, **Skip Updates**, where plugins or themes may be added by selecting the type of either plugin or theme and entering the slug. Once added, the plugin or theme will **no longer receive updates or update notices from wp.org**.
 
 Please note that a plugin slug has the format of `my-plugin/my-plugin.php` and a theme has a slug in the format of `twentynineteen`.
 
