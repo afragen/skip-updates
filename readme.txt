@@ -1,10 +1,10 @@
 # Skip Updates
 
 * Contributors: afragen
-* Tags: plugin, theme, update
+* Tags: skip, update
 * Requires at least: 5.2
 * Requires PHP: 5.6
-* Tested up to: 5.6
+* Tested up to: 5.7
 * Stable tag: 0.5.1
 * Donate link: http://thefragens.com/github-updater-donate
 * License: MIT

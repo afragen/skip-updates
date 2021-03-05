@@ -1,7 +1,7 @@
 # Skip Updates
 
 * Contributors: [Andy Fragen](https://github.com/afragen), [contributors](https://github.com/afragen/skip-updates/graphs/contributors)
-* Tags: plugin, theme, update
+* Tags: skip, update
 * Requires at least: 5.2
 * Requires PHP: 5.6
 * Tested up to: 5.6
