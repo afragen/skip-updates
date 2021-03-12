@@ -226,8 +226,12 @@ class Settings {
 		<select id="<?php echo esc_attr( $args['id'] ); ?>" name="skip_updates[<?php echo esc_attr( $args['setting'] ); ?>]">
 		<?php
 		foreach ( self::$types as $item ) {
-			$selected = ( 'plugin' === $item ) ? 'selected="selected"' : '';
-			echo '<option value="' . esc_attr( $item ) . '" $selected>' . esc_attr( $item ) . '</option>';
+			printf(
+				'<option value="%s" %s>%s</option>',
+				esc_attr( $item ),
+				selected( 'plugin', $item, false ),
+				esc_html( $item )
+			);
 		}
 		?>
 		</select>
