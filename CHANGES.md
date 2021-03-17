@@ -1,4 +1,5 @@
 #### [unreleased]
+* use proper echo and escape not translation escape, thanks @westonruter
 
 #### 0.5.1 / 2021-02-18
 * better data validation for empty data
