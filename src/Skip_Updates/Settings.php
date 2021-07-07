@@ -115,7 +115,7 @@ class Settings {
 		$action = add_query_arg( [ 'page' => 'skip-updates' ], $action );
 		( new SU_List_Table() )->render_list_table();
 		?>
-			<form class="settings" method="post" action="<?php esc_attr_e( $action ); ?>">
+			<form class="settings" method="post" action="<?php echo esc_attr( $action ); ?>">
 		<?php
 		settings_fields( 'skip_updates' );
 		do_settings_sections( 'skip_updates' );
@@ -203,8 +203,8 @@ class Settings {
 	 */
 	public function callback_field( $args ) {
 		?>
-		<label for="<?php esc_attr_e( $args['id'] ); ?>">
-			<input type="text" style="width:50%;" id="<?php esc_attr( $args['id'] ); ?>" name="skip_updates[<?php esc_attr_e( $args['setting'] ); ?>]" value="" placeholder="plugin-slug/plugin-file.php">
+		<label for="<?php echo esc_attr( $args['id'] ); ?>">
+			<input type="text" style="width:50%;" id="<?php esc_attr( $args['id'] ); ?>" name="skip_updates[<?php echo esc_attr( $args['setting'] ); ?>]" value="" placeholder="plugin-slug/plugin-file.php">
 			<br>
 			<span class="description">
 			<?php esc_html_e( 'Ensure proper slug for plugin or theme.', 'skip-updates' ); ?>
@@ -222,12 +222,16 @@ class Settings {
 	 */
 	public function callback_dropdown( $args ) {
 		?>
-		<label for="<?php esc_attr_e( $args['id'] ); ?>">
-		<select id="<?php esc_attr_e( $args['id'] ); ?>" name="skip_updates[<?php esc_attr_e( $args['setting'] ); ?>]">
+		<label for="<?php echo esc_attr( $args['id'] ); ?>">
+		<select id="<?php echo esc_attr( $args['id'] ); ?>" name="skip_updates[<?php echo esc_attr( $args['setting'] ); ?>]">
 		<?php
 		foreach ( self::$types as $item ) {
-			$selected = ( 'plugin' === $item ) ? 'selected="selected"' : '';
-			echo '<option value="' . esc_attr( $item ) . '" $selected>' . esc_attr( $item ) . '</option>';
+			printf(
+				'<option value="%s" %s>%s</option>',
+				esc_attr( $item ),
+				selected( 'plugin', $item, false ),
+				esc_html( $item )
+			);
 		}
 		?>
 		</select>

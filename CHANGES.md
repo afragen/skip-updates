@@ -1,5 +1,9 @@
 #### [unreleased]
 
+#### 0.5.2 / 2021-07-07
+* use proper echo and escape not translation escape, thanks @westonruter
+* add @10up GitHub Actions integration for WordPress SVN
+
 #### 0.5.1 / 2021-02-18
 * better data validation for empty data
 
