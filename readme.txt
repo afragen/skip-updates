@@ -4,8 +4,8 @@
 * Tags: skip, update
 * Requires at least: 5.2
 * Requires PHP: 5.6
-* Tested up to: 5.7
-* Stable tag: 0.5.1
+* Tested up to: 5.8
+* Stable tag: 0.5.2
 * Donate link: http://thefragens.com/github-updater-donate
 * License: MIT
 
@@ -50,6 +50,10 @@ PRs are welcome against the `develop` branch.
 ## Changelog
 
 Please see the Github repository: [CHANGELOG.md](https://github.com/afragen/skip-updates/blob/main/CHANGES.md).
+
+#### 0.5.2 / 2021-07-07
+* use proper echo and escape not translation escape, thanks @westonruter
+* add @10up GitHub Actions integration for WordPress SVN
 
 #### 0.5.1 / 2021-02-18
 * better data validation for empty data
