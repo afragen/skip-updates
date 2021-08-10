@@ -198,7 +198,7 @@ class SU_List_Table extends \WP_List_Table {
 	 **************************************************************************/
 	public function get_columns() {
 		$columns = [
-			'cb'   => '<input type="checkbox" />', // Render a checkbox instead of text.
+			// 'cb'   => '<input type="checkbox" />', // Render a checkbox instead of text.
 			'name' => esc_html__( 'Name', 'skip-updates' ),
 			'type' => esc_html__( 'Type', 'skip-updates' ),
 			'slug' => esc_html__( 'Slug', 'skip-updates' ),
