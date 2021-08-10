@@ -1,4 +1,5 @@
 #### [unreleased]
+* update selector and only allow dot org plugins and themes
 
 #### 0.5.2 / 2021-07-07
 * use proper echo and escape not translation escape, thanks @westonruter

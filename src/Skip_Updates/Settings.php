@@ -23,16 +23,6 @@ class Settings {
 	public static $options;
 
 	/**
-	 * Supported types.
-	 *
-	 * @var array $types
-	 */
-	public static $types = [
-		'plugin',
-		'theme',
-	];
-
-	/**
 	 * Settings constructor.
 	 */
 	public function __construct() {
@@ -73,7 +63,6 @@ class Settings {
 		$post_data = wp_unslash( $_POST );
 		$options   = get_site_option( 'skip_updates', [] );
 		$duplicate = false;
-		$bad_input = false;
 		if ( isset( $post_data['option_page'] )
 			&& 'skip_updates' === $post_data['option_page']
 		) {
@@ -81,21 +70,18 @@ class Settings {
 			? $post_data['skip_updates']
 			: [];
 
+			$new_options = json_decode( $new_options['slug'] );
 			$new_options = $this->sanitize( $new_options );
 
 			foreach ( $options as $option ) {
-				$is_plugin_slug = preg_match( '@/@', $new_options[0]['slug'] );
-				$bad_input      = 'plugin' === $new_options[0]['type'] && ! $is_plugin_slug;
-				$bad_input      = ! $bad_input ? 'theme' === $new_options[0]['type'] && $is_plugin_slug : $bad_input;
-				$bad_input      = $bad_input || empty( $new_options[0]['slug'] );
-				$duplicate      = in_array( $new_options[0]['ID'], $option, true );
-				if ( $duplicate || $bad_input ) {
+				$duplicate = in_array( $new_options[0]['ID'], $option, true );
+				if ( $duplicate ) {
 					$post_data['action'] = false;
 					break;
 				}
 			}
 
-			if ( ! $duplicate && ! $bad_input ) {
+			if ( ! $duplicate ) {
 				$options = array_merge( $options, $new_options );
 				update_site_option( 'skip_updates', $options );
 			}
@@ -143,26 +129,16 @@ class Settings {
 		);
 
 		add_settings_field(
-			'type',
-			esc_html__( 'Repository Type', 'skip-updates' ),
+			'skip',
+			esc_html__( 'Select dot org item to skip.', 'skip-updates' ),
 			[ $this, 'callback_dropdown' ],
 			'skip_updates',
 			'skip_updates',
 			[
-				'id'      => 'skip_updates_type',
-				'setting' => 'type',
-			]
-		);
-
-		add_settings_field(
-			'slug',
-			esc_html__( 'Repository Slug', 'skip-updates' ),
-			[ $this, 'callback_field' ],
-			'skip_updates',
-			'skip_updates',
-			[
-				'id'      => 'skip_updates_slug',
+				'id'      => 'skip_updates_skip',
 				'setting' => 'slug',
+				'plugins' => get_plugins(),
+				'themes'  => wp_get_themes(),
 			]
 		);
 	}
@@ -195,25 +171,6 @@ class Settings {
 	}
 
 	/**
-	 * Field callback.
-	 *
-	 * @param array $args Data passed from add_settings_field().
-	 *
-	 * @return void
-	 */
-	public function callback_field( $args ) {
-		?>
-		<label for="<?php echo esc_attr( $args['id'] ); ?>">
-			<input type="text" style="width:50%;" id="<?php esc_attr( $args['id'] ); ?>" name="skip_updates[<?php echo esc_attr( $args['setting'] ); ?>]" value="" placeholder="plugin-slug/plugin-file.php">
-			<br>
-			<span class="description">
-			<?php esc_html_e( 'Ensure proper slug for plugin or theme.', 'skip-updates' ); ?>
-			</span>
-		</label>
-		<?php
-	}
-
-	/**
 	 * Dropdown callback.
 	 *
 	 * @param array $args Data passed from add_settings_field().
@@ -225,14 +182,42 @@ class Settings {
 		<label for="<?php echo esc_attr( $args['id'] ); ?>">
 		<select id="<?php echo esc_attr( $args['id'] ); ?>" name="skip_updates[<?php echo esc_attr( $args['setting'] ); ?>]">
 		<?php
-		foreach ( self::$types as $item ) {
-			printf(
-				'<option value="%s" %s>%s</option>',
-				esc_attr( $item ),
-				selected( 'plugin', $item, false ),
-				esc_html( $item )
-			);
+
+		foreach ( $args['plugins'] as $slug => $plugin ) {
+			$plugin_dropdown[ $plugin['Name'] ] = $slug;
 		}
+		foreach ( $args['themes'] as $slug => $theme ) {
+			$theme_dropdown[ $theme->get( 'Name' ) ] = $slug;
+		}
+		$dropdown['plugin'] = $plugin_dropdown;
+		$dropdown['theme']  = $theme_dropdown;
+
+		foreach ( $dropdown as $label => $items ) {
+			// Add dropdown type label.
+			echo '<option disabled>' . esc_attr( ucwords( $label ) ) . 's</option>';
+			foreach ( $items as $name => $slug ) {
+				if ( ! $this->is_dot_org( $label, $slug ) ) {
+					continue;
+				}
+				printf(
+					'<option value="%s" %s>%s%s</option>',
+					esc_attr(
+						json_encode(
+							[
+								'name' => $name,
+								'slug' => $slug,
+								'type' => $label,
+							]
+						)
+					),
+					selected( $label, $name, false ),
+					'&nbsp;&nbsp;',
+					esc_html( $name )
+				);
+
+			}
+		}
+
 		?>
 		</select>
 		</label>
@@ -268,4 +253,45 @@ class Settings {
 			exit;
 		}
 	}
+
+	/**
+	 * Query wp.org for plugin/theme information.
+	 *
+	 * @param string $type plugin|theme.
+	 * @param string $slug Item slug.
+	 *
+	 * @return bool|\WP_Error
+	 */
+	private function is_dot_org( $type, $slug ) {
+		$slug   = 'plugin' === $type ? dirname( $slug ) : $slug;
+		$option = get_site_option( 'skip_updates_dot_org', [] );
+
+		if ( ! $option
+			|| ( empty( $option[ $slug ]['timeout'] ) || time() > $option[ $slug ]['timeout'] )
+		) {
+			$url      = "https://api.wordpress.org/{$type}s/info/1.1/";
+			$url      = add_query_arg(
+				[
+					'action'                        => "{$type}_information",
+					rawurlencode( 'request[slug]' ) => $slug,
+				],
+				$url
+			);
+			$response = wp_remote_get( $url );
+
+			if ( is_wp_error( $response ) ) {
+				return false;
+			}
+
+			$response = json_decode( $response['body'] );
+			$response = ! empty( $response ) && ! isset( $response->error ) ? 'in dot org' : 'not in dot org';
+
+			$option[ $slug ]['dot_org'] = 'in dot org' === $response;
+			$option[ $slug ]['timeout'] = strtotime( '+12 hours' );
+			update_site_option( 'skip_updates_dot_org', $option );
+		}
+
+		return $option[ $slug ]['dot_org'];
+	}
+
 }

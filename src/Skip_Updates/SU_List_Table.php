@@ -55,11 +55,13 @@ class SU_List_Table extends \WP_List_Table {
 				'ID'   => md5( 'plugin-noheader/plugin-noheader.php' ),
 				'type' => 'plugin',
 				'slug' => 'plugin-noheader/plugin-noheader.php',
+				'name' => 'Plugin No Header',
 			],
 			[
 				'ID'   => md5( 'theme-noheader' ),
 				'type' => 'theme',
 				'slug' => 'theme-noheader',
+				'name' => 'Theme No Header',
 			],
 		];
 		// self::$examples = $examples;
@@ -101,8 +103,11 @@ class SU_List_Table extends \WP_List_Table {
 	public function column_default( $item, $column_name ) {
 		switch ( $column_name ) {
 			case 'slug':
+			case 'name':
 			case 'type':
-				return $item[ $column_name ];
+				if ( isset( $item[ $column_name ] ) ) {
+					return $item[ $column_name ];
+				}
 			default:
 				return print_r( $item, true ); // Show the whole array for troubleshooting purposes.
 		}
@@ -194,8 +199,9 @@ class SU_List_Table extends \WP_List_Table {
 	public function get_columns() {
 		$columns = [
 			'cb'   => '<input type="checkbox" />', // Render a checkbox instead of text.
-			'slug' => esc_html__( 'Slug', 'skip-updates' ),
+			'name' => esc_html__( 'Name', 'skip-updates' ),
 			'type' => esc_html__( 'Type', 'skip-updates' ),
+			'slug' => esc_html__( 'Slug', 'skip-updates' ),
 		];
 
 		return $columns;
@@ -218,8 +224,9 @@ class SU_List_Table extends \WP_List_Table {
 	 **************************************************************************/
 	public function get_sortable_columns() {
 		$sortable_columns = [
-			'slug' => [ 'slug', true ],     // true means it's already sorted.
+			// 'slug' => [ 'slug', true ],     // true means it's already sorted.
 			'type' => [ 'type', true ],
+			'name' => [ 'name', true ],
 		];
 
 		return $sortable_columns;
@@ -432,7 +439,7 @@ class SU_List_Table extends \WP_List_Table {
 	 */
 	public function usort_reorder( $a, $b ) {
      // phpcs:disable WordPress.Security.NonceVerification.Recommended
-		$orderby = ( ! empty( $_REQUEST['orderby'] ) ) ? sanitize_text_field( wp_unslash( $_REQUEST['orderby'] ) ) : 'type'; // If no sort, default to site.
+		$orderby = ( ! empty( $_REQUEST['orderby'] ) ) ? sanitize_text_field( wp_unslash( $_REQUEST['orderby'] ) ) : 'name'; // If no sort, default to site.
 		$order   = ( ! empty( $_REQUEST['order'] ) ) ? sanitize_text_field( wp_unslash( $_REQUEST['order'] ) ) : 'asc'; // If no order, default to asc.
      // phpcs:enable
 		$result = strcmp( $a[ $orderby ], $b[ $orderby ] ); // Determine sort order.
