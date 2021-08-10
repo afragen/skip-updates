@@ -232,7 +232,7 @@ class Settings {
 	protected function redirect_on_save( $post_data ) {
 		$update = false;
 
-    	 // phpcs:disable WordPress.Security.NonceVerification.Missing
+    	// phpcs:disable WordPress.Security.NonceVerification.Missing
 		$is_option_page = isset( $post_data['option_page'] ) && 'skip_updates' === $post_data['option_page'];
 		if ( ( isset( $post_data['action'] ) && 'update' === $post_data['action'] ) && $is_option_page ) {
 			$update = true;

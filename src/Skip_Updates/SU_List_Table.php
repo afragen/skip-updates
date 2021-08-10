@@ -109,6 +109,7 @@ class SU_List_Table extends \WP_List_Table {
 					return $item[ $column_name ];
 				}
 			default:
+				// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_print_r
 				return print_r( $item, true ); // Show the whole array for troubleshooting purposes.
 		}
 	}
@@ -130,11 +131,11 @@ class SU_List_Table extends \WP_List_Table {
 	 * @return string Text to be placed inside the column <td> (site title only)
 	 **************************************************************************/
 	public function column_name( $item ) {
-     // phpcs:disable WordPress.Security.NonceVerification.Recommended
-     // phpcs:disable WordPress.Security.ValidatedSanitizedInput
+    	// phpcs:disable WordPress.Security.NonceVerification.Recommended
+    	// phpcs:disable WordPress.Security.ValidatedSanitizedInput
 		$page = isset( $_REQUEST['page'] ) ? sanitize_file_name( wp_slash( $_REQUEST['page'] ) ) : null;
 		$tab  = isset( $_REQUEST['tab'] ) ? sanitize_file_name( wp_slash( $_REQUEST['tab'] ) ) : null;
-     // phpcs:enable
+    	// phpcs:enable
 		$location = add_query_arg(
 			[
 				'page' => $page,
@@ -438,10 +439,10 @@ class SU_List_Table extends \WP_List_Table {
 	 * @return int Sort order, either 1 or -1.
 	 */
 	public function usort_reorder( $a, $b ) {
-     // phpcs:disable WordPress.Security.NonceVerification.Recommended
+    	// phpcs:disable WordPress.Security.NonceVerification.Recommended
 		$orderby = ( ! empty( $_REQUEST['orderby'] ) ) ? sanitize_text_field( wp_unslash( $_REQUEST['orderby'] ) ) : 'name'; // If no sort, default to site.
 		$order   = ( ! empty( $_REQUEST['order'] ) ) ? sanitize_text_field( wp_unslash( $_REQUEST['order'] ) ) : 'asc'; // If no order, default to asc.
-     // phpcs:enable
+    	// phpcs:enable
 		$result = strcmp( $a[ $orderby ], $b[ $orderby ] ); // Determine sort order.
 		return ( 'asc' === $order ) ? $result : -$result; // Send final sort direction to usort.
 	}
@@ -465,7 +466,7 @@ class SU_List_Table extends \WP_List_Table {
 		wp_nonce_field( 'process-items', '_wpnonce_list' );
 
 		// For plugins, we also need to ensure that the form posts back to our current page.
-     // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+    	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$current_page = isset( $_REQUEST['page'] ) ? sanitize_file_name( wp_unslash( $_REQUEST['page'] ) ) : null;
 		echo '<input type="hidden" name="page" value="' . esc_attr( $current_page ) . '" />';
 
