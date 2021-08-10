@@ -15,34 +15,11 @@ A plugin that allows for adding installed dot org hosted plugins or themes to sk
 
 Have you ever had a custom plugin or theme accidentally overwritten by an update from a wp.org plugin or theme with an identical slug? There are several very old Trac tickets describing this behavior and are still waiting for a solution in core. That solution is now available.
 
-This is a plugin that will add a Settings menu, **Skip Updates**, where plugins or themes may be added by selecting the type of either plugin or theme and entering the slug. Once added, the plugin or theme will **no longer receive updates or update notices from wp.org**.
+This is a plugin that will add a Settings menu, **Skip Updates**, where plugins or themes may be added by selecting the plugin or theme from the dropdown. Once added, the plugin or theme will **no longer receive updates or update notices from wp.org**.
 
-Please note that a plugin slug has the format of `my-plugin/my-plugin.php` and a theme has a slug in the format of `twentynineteen`.
+Only plugins or themes on wp.org are displayed for selection.
 
 This does require that this plugin is installed and activated for this protection. Fortunately there is a [plugin dependency installer](https://github.com/afragen/wp-dependency-installer) library that may be added to your plugin or theme that is able to install and activate any plugin, including this one, in either an optional or mandatory fashion.
-
-## Usage
-
-The `"type"` element is from the following list.
-
-* plugin
-* theme
-
-The `"slug"` element is either the plugin slug or the theme stylesheet slug.
-
-### Examples
-
-    type: plugin
-    slug: akismet/akismet.php
-
-
-or
-
-    type: theme
-    slug: twentynineteen
-
-
-Above are examples for a plugin or a theme. Please notice the diffence in the `slug` format.
 
 ## Development
 PRs are welcome against the `develop` branch.
