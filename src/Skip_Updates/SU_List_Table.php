@@ -129,7 +129,7 @@ class SU_List_Table extends \WP_List_Table {
 	 * @param  array $item A singular item (one full row's worth of data).
 	 * @return string Text to be placed inside the column <td> (site title only)
 	 **************************************************************************/
-	public function column_slug( $item ) {
+	public function column_name( $item ) {
      // phpcs:disable WordPress.Security.NonceVerification.Recommended
      // phpcs:disable WordPress.Security.ValidatedSanitizedInput
 		$page = isset( $_REQUEST['page'] ) ? sanitize_file_name( wp_slash( $_REQUEST['page'] ) ) : null;
@@ -154,7 +154,7 @@ class SU_List_Table extends \WP_List_Table {
 		/* translators: 1: title, 2: ID, 3: row actions */
 			'%1$s <span style="color:silver">(id:%2$s)</span>%3$s',
 			/*$1%s*/
-			$item['slug'],
+			$item['name'],
 			/*$2%s*/
 			$item['ID'],
 			/*$3%s*/
