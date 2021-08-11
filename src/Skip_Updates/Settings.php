@@ -266,7 +266,7 @@ class Settings {
 		$slug   = 'plugin' === $type ? dirname( $slug ) : $slug;
 		$option = get_site_option( 'skip_updates_dot_org', [] );
 
-		if ( ! $option
+		if ( ! isset( $option[ $slug ] )
 			|| ( empty( $option[ $slug ]['timeout'] ) || time() > $option[ $slug ]['timeout'] )
 		) {
 			$url      = "https://api.wordpress.org/{$type}s/info/1.1/";
