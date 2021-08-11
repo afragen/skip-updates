@@ -287,7 +287,7 @@ class Settings {
 			$response = ! empty( $response ) && ! isset( $response->error ) ? 'in dot org' : 'not in dot org';
 
 			$option[ $slug ]['dot_org'] = 'in dot org' === $response;
-			$option[ $slug ]['timeout'] = strtotime( '+12 hours' );
+			$option[ $slug ]['timeout'] = strtotime( '+10 days' );
 			update_site_option( 'skip_updates_dot_org', $option );
 		}
 
