@@ -131,11 +131,11 @@ class SU_List_Table extends \WP_List_Table {
 	 * @return string Text to be placed inside the column <td> (site title only)
 	 **************************************************************************/
 	public function column_name( $item ) {
-    	// phpcs:disable WordPress.Security.NonceVerification.Recommended
-    	// phpcs:disable WordPress.Security.ValidatedSanitizedInput
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended
+		// phpcs:disable WordPress.Security.ValidatedSanitizedInput
 		$page = isset( $_REQUEST['page'] ) ? sanitize_file_name( wp_slash( $_REQUEST['page'] ) ) : null;
 		$tab  = isset( $_REQUEST['tab'] ) ? sanitize_file_name( wp_slash( $_REQUEST['tab'] ) ) : null;
-    	// phpcs:enable
+		// phpcs:enable
 		$location = add_query_arg(
 			[
 				'page' => $page,
@@ -152,7 +152,7 @@ class SU_List_Table extends \WP_List_Table {
 
 		// Return the title contents.
 		return sprintf(
-		/* translators: 1: title, 2: ID, 3: row actions */
+			/* translators: 1: title, 2: ID, 3: row actions */
 			'%1$s <span style="color:silver">(id:%2$s)</span>%3$s',
 			/*$1%s*/
 			$item['name'],
@@ -268,7 +268,7 @@ class SU_List_Table extends \WP_List_Table {
 		// Detect when a bulk action is being triggered...
 		if ( 'delete' === $this->current_action() ) {
 			$this->check_nonce();
-         // phpcs:ignore WordPress.Security
+			// phpcs:ignore WordPress.Security
 			$slugs = isset( $_REQUEST['slug'] ) ? wp_unslash( $_REQUEST['slug'] ) : null;
 			$slugs = is_array( $slugs ) ? $slugs : (array) $slugs;
 			foreach ( $slugs as $slug ) {
