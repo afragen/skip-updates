@@ -130,7 +130,7 @@ class Settings {
 
 		add_settings_field(
 			'skip',
-			esc_html__( 'Select dot org item to skip.', 'skip-updates' ),
+			esc_html__( 'Select item to skip.', 'skip-updates' ),
 			[ $this, 'callback_dropdown' ],
 			'skip_updates',
 			'skip_updates',
@@ -166,7 +166,7 @@ class Settings {
 	 */
 	public function print_section_additions() {
 		echo '<p>';
-		esc_html_e( 'If there are dot org plugins or themes that you do not want to show updates, add them here.', 'skip-updates' );
+		esc_html_e( 'If there are wp.org plugins or themes that you do not want to show updates, add them here.', 'skip-updates' );
 		echo '</p>';
 	}
 
