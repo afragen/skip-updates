@@ -11,7 +11,7 @@
  * Plugin Name:       Skip Updates
  * Plugin URI:        https://github.com/afragen/skip-updates
  * Description:       Skip updates for selected dot org plugins or themes.
- * Version:           0.5.2
+ * Version:           1.0.0
  * Author:            Andy Fragen
  * License:           MIT
  * Network:           true

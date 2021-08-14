@@ -55,11 +55,13 @@ class SU_List_Table extends \WP_List_Table {
 				'ID'   => md5( 'plugin-noheader/plugin-noheader.php' ),
 				'type' => 'plugin',
 				'slug' => 'plugin-noheader/plugin-noheader.php',
+				'name' => 'Plugin No Header',
 			],
 			[
 				'ID'   => md5( 'theme-noheader' ),
 				'type' => 'theme',
 				'slug' => 'theme-noheader',
+				'name' => 'Theme No Header',
 			],
 		];
 		// self::$examples = $examples;
@@ -101,9 +103,13 @@ class SU_List_Table extends \WP_List_Table {
 	public function column_default( $item, $column_name ) {
 		switch ( $column_name ) {
 			case 'slug':
+			case 'name':
 			case 'type':
-				return $item[ $column_name ];
+				if ( isset( $item[ $column_name ] ) ) {
+					return $item[ $column_name ];
+				}
 			default:
+				// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_print_r
 				return print_r( $item, true ); // Show the whole array for troubleshooting purposes.
 		}
 	}
@@ -124,12 +130,12 @@ class SU_List_Table extends \WP_List_Table {
 	 * @param  array $item A singular item (one full row's worth of data).
 	 * @return string Text to be placed inside the column <td> (site title only)
 	 **************************************************************************/
-	public function column_slug( $item ) {
-     // phpcs:disable WordPress.Security.NonceVerification.Recommended
-     // phpcs:disable WordPress.Security.ValidatedSanitizedInput
+	public function column_name( $item ) {
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended
+		// phpcs:disable WordPress.Security.ValidatedSanitizedInput
 		$page = isset( $_REQUEST['page'] ) ? sanitize_file_name( wp_slash( $_REQUEST['page'] ) ) : null;
 		$tab  = isset( $_REQUEST['tab'] ) ? sanitize_file_name( wp_slash( $_REQUEST['tab'] ) ) : null;
-     // phpcs:enable
+		// phpcs:enable
 		$location = add_query_arg(
 			[
 				'page' => $page,
@@ -146,10 +152,10 @@ class SU_List_Table extends \WP_List_Table {
 
 		// Return the title contents.
 		return sprintf(
-		/* translators: 1: title, 2: ID, 3: row actions */
+			/* translators: 1: title, 2: ID, 3: row actions */
 			'%1$s <span style="color:silver">(id:%2$s)</span>%3$s',
 			/*$1%s*/
-			$item['slug'],
+			$item['name'],
 			/*$2%s*/
 			$item['ID'],
 			/*$3%s*/
@@ -193,9 +199,10 @@ class SU_List_Table extends \WP_List_Table {
 	 **************************************************************************/
 	public function get_columns() {
 		$columns = [
-			'cb'   => '<input type="checkbox" />', // Render a checkbox instead of text.
-			'slug' => esc_html__( 'Slug', 'skip-updates' ),
+			// 'cb'   => '<input type="checkbox" />', // Render a checkbox instead of text.
+			'name' => esc_html__( 'Name', 'skip-updates' ),
 			'type' => esc_html__( 'Type', 'skip-updates' ),
+			'slug' => esc_html__( 'Slug', 'skip-updates' ),
 		];
 
 		return $columns;
@@ -218,8 +225,9 @@ class SU_List_Table extends \WP_List_Table {
 	 **************************************************************************/
 	public function get_sortable_columns() {
 		$sortable_columns = [
-			'slug' => [ 'slug', true ],     // true means it's already sorted.
+			// 'slug' => [ 'slug', true ],     // true means it's already sorted.
 			'type' => [ 'type', true ],
+			'name' => [ 'name', true ],
 		];
 
 		return $sortable_columns;
@@ -260,7 +268,7 @@ class SU_List_Table extends \WP_List_Table {
 		// Detect when a bulk action is being triggered...
 		if ( 'delete' === $this->current_action() ) {
 			$this->check_nonce();
-         // phpcs:ignore WordPress.Security
+			// phpcs:ignore WordPress.Security
 			$slugs = isset( $_REQUEST['slug'] ) ? wp_unslash( $_REQUEST['slug'] ) : null;
 			$slugs = is_array( $slugs ) ? $slugs : (array) $slugs;
 			foreach ( $slugs as $slug ) {
@@ -431,10 +439,10 @@ class SU_List_Table extends \WP_List_Table {
 	 * @return int Sort order, either 1 or -1.
 	 */
 	public function usort_reorder( $a, $b ) {
-     // phpcs:disable WordPress.Security.NonceVerification.Recommended
-		$orderby = ( ! empty( $_REQUEST['orderby'] ) ) ? sanitize_text_field( wp_unslash( $_REQUEST['orderby'] ) ) : 'type'; // If no sort, default to site.
+    	// phpcs:disable WordPress.Security.NonceVerification.Recommended
+		$orderby = ( ! empty( $_REQUEST['orderby'] ) ) ? sanitize_text_field( wp_unslash( $_REQUEST['orderby'] ) ) : 'name'; // If no sort, default to site.
 		$order   = ( ! empty( $_REQUEST['order'] ) ) ? sanitize_text_field( wp_unslash( $_REQUEST['order'] ) ) : 'asc'; // If no order, default to asc.
-     // phpcs:enable
+    	// phpcs:enable
 		$result = strcmp( $a[ $orderby ], $b[ $orderby ] ); // Determine sort order.
 		return ( 'asc' === $order ) ? $result : -$result; // Send final sort direction to usort.
 	}
@@ -458,7 +466,7 @@ class SU_List_Table extends \WP_List_Table {
 		wp_nonce_field( 'process-items', '_wpnonce_list' );
 
 		// For plugins, we also need to ensure that the form posts back to our current page.
-     // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+    	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$current_page = isset( $_REQUEST['page'] ) ? sanitize_file_name( wp_unslash( $_REQUEST['page'] ) ) : null;
 		echo '<input type="hidden" name="page" value="' . esc_attr( $current_page ) . '" />';
 

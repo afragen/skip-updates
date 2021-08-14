@@ -1,24 +1,23 @@
-<?php return array (
-  'root' => 
-  array (
-    'pretty_version' => 'dev-main',
-    'version' => 'dev-main',
-    'aliases' => 
-    array (
+<?php return array(
+    'root' => array(
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'type' => 'wordpress-plugin',
+        'install_path' => __DIR__ . '/../../',
+        'aliases' => array(),
+        'reference' => '51b6121d3af9bd8154e0f483f3f93376a8ca6c53',
+        'name' => 'afragen/skip-updates',
+        'dev' => true,
     ),
-    'reference' => '04fd8304efff75bc16abc0975d97fd895c67791b',
-    'name' => 'afragen/skip-updates',
-  ),
-  'versions' => 
-  array (
-    'afragen/skip-updates' => 
-    array (
-      'pretty_version' => 'dev-main',
-      'version' => 'dev-main',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '04fd8304efff75bc16abc0975d97fd895c67791b',
+    'versions' => array(
+        'afragen/skip-updates' => array(
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'type' => 'wordpress-plugin',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'reference' => '51b6121d3af9bd8154e0f483f3f93376a8ca6c53',
+            'dev_requirement' => false,
+        ),
     ),
-  ),
 );
