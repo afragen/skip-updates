@@ -1,4 +1,6 @@
 #### [unreleased]
+* speed up check for testing if plugin or theme is in dot org by using `wp_remote_head`
+* longer timeout if plugin or theme is in dot org
 
 #### 1.0.0 / 2021-08-14
 * update selector and only allow dot org plugins and themes
