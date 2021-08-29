@@ -1,4 +1,6 @@
 #### [unreleased]
+
+#### 1.1.0 / 2021-08-29
 * speed up check for testing if plugin or theme is in dot org by using `wp_remote_head`
 * longer timeout if plugin or theme is in dot org
 

@@ -5,7 +5,7 @@
 * Requires at least: 5.2
 * Requires PHP: 5.6
 * Tested up to: 5.8
-* Stable tag: 1.0.0
+* Stable tag: 1.1.0
 * Donate link: http://thefragens.com/github-updater-donate
 * License: MIT
 
@@ -27,6 +27,10 @@ PRs are welcome against the `develop` branch.
 ## Changelog
 
 Please see the Github repository: [CHANGELOG.md](https://github.com/afragen/skip-updates/blob/main/CHANGES.md).
+
+#### 1.1.0 / 2021-08-29
+* speed up check for testing if plugin or theme is in dot org by using `wp_remote_head`
+* longer timeout if plugin or theme is in dot org
 
 #### 1.0.0 / 2021-08-14
 * update selector and only allow dot org plugins and themes

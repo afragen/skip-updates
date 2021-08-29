@@ -5,9 +5,9 @@
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'cee694bac9ae33a6fbefb132237f374d27dcbe81',
+        'reference' => 'c7fa31a90ff615e8dacc3563ef1e565004c27b42',
         'name' => 'afragen/skip-updates',
-        'dev' => true,
+        'dev' => false,
     ),
     'versions' => array(
         'afragen/skip-updates' => array(
@@ -16,7 +16,7 @@
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'cee694bac9ae33a6fbefb132237f374d27dcbe81',
+            'reference' => 'c7fa31a90ff615e8dacc3563ef1e565004c27b42',
             'dev_requirement' => false,
         ),
     ),
