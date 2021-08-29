@@ -269,7 +269,7 @@ class Settings {
 		if ( ! isset( $option[ $slug ] )
 			|| ( empty( $option[ $slug ]['timeout'] ) || time() > $option[ $slug ]['timeout'] )
 		) {
-			$url      = "https://api.wordpress.org/{$type}s/info/1.1/";
+			$url      = "https://api.wordpress.org/{$type}s/info/1.2/";
 			$url      = add_query_arg(
 				[
 					'action'                        => "{$type}_information",
@@ -277,17 +277,18 @@ class Settings {
 				],
 				$url
 			);
-			$response = wp_remote_get( $url );
+			$response = wp_remote_head( $url );
 
 			if ( is_wp_error( $response ) ) {
 				return false;
 			}
 
-			$response = json_decode( $response['body'] );
-			$response = ! empty( $response ) && ! isset( $response->error ) ? 'in dot org' : 'not in dot org';
+			$code     = wp_remote_retrieve_response_code( $response );
+			$response = 200 === $code ? 'in dot org' : 'not in dot org';
 
 			$option[ $slug ]['dot_org'] = 'in dot org' === $response;
-			$option[ $slug ]['timeout'] = strtotime( '+10 days' );
+			$timeout                    = $option[ $slug ]['dot_org'] ? '+6 months' : '+10 days';
+			$option[ $slug ]['timeout'] = strtotime( $timeout );
 			update_site_option( 'skip_updates_dot_org', $option );
 		}
 
