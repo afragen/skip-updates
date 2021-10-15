@@ -133,8 +133,8 @@ class SU_List_Table extends \WP_List_Table {
 	public function column_name( $item ) {
 		// phpcs:disable WordPress.Security.NonceVerification.Recommended
 		// phpcs:disable WordPress.Security.ValidatedSanitizedInput
-		$page = isset( $_REQUEST['page'] ) ? sanitize_file_name( wp_slash( $_REQUEST['page'] ) ) : null;
-		$tab  = isset( $_REQUEST['tab'] ) ? sanitize_file_name( wp_slash( $_REQUEST['tab'] ) ) : null;
+		$page = isset( $_REQUEST['page'] ) ? sanitize_title_with_dashes( wp_slash( $_REQUEST['page'] ) ) : null;
+		$tab  = isset( $_REQUEST['tab'] ) ? sanitize_title_with_dashes( wp_slash( $_REQUEST['tab'] ) ) : null;
 		// phpcs:enable
 		$location = add_query_arg(
 			[
@@ -467,7 +467,7 @@ class SU_List_Table extends \WP_List_Table {
 
 		// For plugins, we also need to ensure that the form posts back to our current page.
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$current_page = isset( $_REQUEST['page'] ) ? sanitize_file_name( wp_unslash( $_REQUEST['page'] ) ) : null;
+		$current_page = isset( $_REQUEST['page'] ) ? sanitize_title_with_dashes( wp_unslash( $_REQUEST['page'] ) ) : null;
 		echo '<input type="hidden" name="page" value="' . esc_attr( $current_page ) . '" />';
 
 		// Now we can render the completed list table.
