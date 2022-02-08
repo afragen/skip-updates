@@ -1,5 +1,6 @@
 #### [unreleased]
 * use `sanitize_title_with_dashes()` as `sanitize_file_name()` maybe have attached filter that changes output
+* update nonce check in `class SU_List_Table`
 * update `uninstall.php`
 
 #### 1.1.0 / 2021-08-29
