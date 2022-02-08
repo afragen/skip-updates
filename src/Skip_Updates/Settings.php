@@ -59,24 +59,28 @@ class Settings {
 	 * Save settings.
 	 */
 	public function save_settings() {
-		// phpcs:ignore WordPress.Security.NonceVerification.Missing
-		$post_data = wp_unslash( $_POST );
+		if ( ( ! isset( $_POST['_wpnonce'] )
+			|| ! \wp_verify_nonce( sanitize_key( wp_unslash( $_POST['_wpnonce'] ) ), 'skip_updates-options' ) )
+		) {
+			return;
+		}
+
 		$options   = get_site_option( 'skip_updates', [] );
 		$duplicate = false;
-		if ( isset( $post_data['option_page'] )
-			&& 'skip_updates' === $post_data['option_page']
+		if ( isset( $_POST['option_page'] )
+			&& 'skip_updates' === $_POST['option_page']
 		) {
-			$new_options = isset( $post_data['skip_updates'] )
-			? $post_data['skip_updates']
+			$new_options = isset( $_POST['skip_updates']['slug'] )
+			? sanitize_text_field( wp_unslash( $_POST['skip_updates']['slug'] ) )
 			: [];
 
-			$new_options = json_decode( $new_options['slug'] );
+			$new_options = json_decode( $new_options );
 			$new_options = $this->sanitize( $new_options );
 
 			foreach ( $options as $option ) {
 				$duplicate = in_array( $new_options[0]['ID'], $option, true );
 				if ( $duplicate ) {
-					$post_data['action'] = false;
+					$_POST['action'] = false;
 					break;
 				}
 			}
@@ -86,7 +90,7 @@ class Settings {
 				update_site_option( 'skip_updates', $options );
 			}
 
-			$this->redirect_on_save( $post_data );
+			$this->redirect_on_save();
 		}
 	}
 
@@ -226,19 +230,17 @@ class Settings {
 
 	/**
 	 * Redirect to correct Settings tab on Save.
-	 *
-	 * @param array $post_data Array from $_POST.
 	 */
-	protected function redirect_on_save( $post_data ) {
+	protected function redirect_on_save() {
 		$update = false;
 
-    	// phpcs:disable WordPress.Security.NonceVerification.Missing
-		$is_option_page = isset( $post_data['option_page'] ) && 'skip_updates' === $post_data['option_page'];
-		if ( ( isset( $post_data['action'] ) && 'update' === $post_data['action'] ) && $is_option_page ) {
+		if ( ! isset( $_POST['_wpnonce'] ) || ! \wp_verify_nonce( \sanitize_key( \wp_unslash( $_POST['_wpnonce'] ), 'skip_updates-options' ) ) ) {
+			return;
+		}
+		$is_option_page = isset( $_POST['option_page'] ) && 'skip_updates' === $_POST['option_page'];
+		if ( ( isset( $_POST['action'] ) && 'update' === $_POST['action'] ) && $is_option_page ) {
 			$update = true;
 		}
- 	    // phpcs:enable
-
 		$redirect_url = is_multisite() ? network_admin_url( 'settings.php' ) : admin_url( 'options-general.php' );
 
 		if ( $is_option_page ) {

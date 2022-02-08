@@ -1,21 +1,21 @@
-# Copyright (C) 2021 Andy Fragen
+# Copyright (C) 2022 Andy Fragen
 # This file is distributed under the MIT.
 msgid ""
 msgstr ""
-"Project-Id-Version: Skip Updates 1.0.0\n"
+"Project-Id-Version: Skip Updates 1.1.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/skip-updates\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-08-14T19:22:03+00:00\n"
+"POT-Creation-Date: 2022-02-08T23:49:44+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.5.0\n"
+"X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: skip-updates\n"
 
 #. Plugin Name of the plugin
-#: src/Skip_Updates/Settings.php:126
+#: src/Skip_Updates/Settings.php:130
 msgid "Skip Updates"
 msgstr ""
 
@@ -40,27 +40,27 @@ msgctxt "Menu item"
 msgid "Skip Updates"
 msgstr ""
 
-#: src/Skip_Updates/Settings.php:133
+#: src/Skip_Updates/Settings.php:137
 msgid "Select item to skip."
 msgstr ""
 
-#: src/Skip_Updates/Settings.php:169
+#: src/Skip_Updates/Settings.php:173
 msgid "If there are wp.org plugins or themes that you do not want to show updates, add them here."
 msgstr ""
 
-#: src/Skip_Updates/SU_List_Table.php:203
+#: src/Skip_Updates/SU_List_Table.php:202
 msgid "Name"
 msgstr ""
 
-#: src/Skip_Updates/SU_List_Table.php:204
+#: src/Skip_Updates/SU_List_Table.php:203
 msgid "Type"
 msgstr ""
 
-#: src/Skip_Updates/SU_List_Table.php:205
+#: src/Skip_Updates/SU_List_Table.php:204
 msgid "Slug"
 msgstr ""
 
-#: src/Skip_Updates/SU_List_Table.php:253
+#: src/Skip_Updates/SU_List_Table.php:252
 msgid "Delete"
 msgstr ""
 
@@ -68,14 +68,6 @@ msgstr ""
 msgid "Items would go to edit when we write that code."
 msgstr ""
 
-#: src/Skip_Updates/SU_List_Table.php:306
-msgid "A nonce was not properly set. Please report an issue."
-msgstr ""
-
-#: src/Skip_Updates/SU_List_Table.php:309
-msgid "Your nonce did not verify."
-msgstr ""
-
-#: src/Skip_Updates/SU_List_Table.php:462
+#: src/Skip_Updates/SU_List_Table.php:437
 msgid "Skip Updates List Table"
 msgstr ""
