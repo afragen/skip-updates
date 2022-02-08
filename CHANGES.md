@@ -1,4 +1,6 @@
 #### [unreleased]
+
+#### 1.1.1 / 2022-02-08
 * use `sanitize_title_with_dashes()` as `sanitize_file_name()` maybe have attached filter that changes output
 * use `sanitize_key()` for nonces
 * update nonce check in `class SU_List_Table` and `class Settings`
