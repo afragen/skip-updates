@@ -33,5 +33,8 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
-delete_site_option( 'skip_updates' );
-delete_option( 'skip_updates' );
+$options = [ 'skip_updates', 'skip_updates_dot_org' ];
+foreach ( $options as $option ) {
+	delete_site_option( $option );
+	delete_option( $option );
+}
