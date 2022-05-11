@@ -5,7 +5,7 @@
 * Requires at least: 5.2
 * Requires PHP: 5.6
 * Tested up to: 6.0
-* Stable tag: 1.1.1
+* Stable tag: 1.1.2
 * Donate link: http://thefragens.com/github-updater-donate
 * License: MIT
 
@@ -27,6 +27,9 @@ PRs are welcome against the `develop` branch.
 ## Changelog
 
 Please see the Github repository: [CHANGELOG.md](https://github.com/afragen/skip-updates/blob/main/CHANGES.md).
+
+#### 1.1.2 / 2022-05-10
+* updated tested to
 
 #### 1.1.1 / 2022-02-08
 * use `sanitize_title_with_dashes()` as `sanitize_file_name()` maybe have attached filter that changes output

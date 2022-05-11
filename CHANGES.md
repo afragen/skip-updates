@@ -1,5 +1,8 @@
 #### [unreleased]
 
+#### 1.1.2 / 2022-05-10
+* updated tested to
+
 #### 1.1.1 / 2022-02-08
 * use `sanitize_title_with_dashes()` as `sanitize_file_name()` maybe have attached filter that changes output
 * use `sanitize_key()` for nonces
