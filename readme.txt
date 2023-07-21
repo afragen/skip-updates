@@ -4,8 +4,8 @@
 * Tags: skip, update
 * Requires at least: 5.2
 * Requires PHP: 5.6
-* Tested up to: 6.0
-* Stable tag: 1.1.2
+* Tested up to: 6.3
+* Stable tag: 1.1.3
 * Donate link: http://thefragens.com/github-updater-donate
 * License: MIT
 
@@ -27,6 +27,10 @@ PRs are welcome against the `develop` branch.
 ## Changelog
 
 Please see the Github repository: [CHANGELOG.md](https://github.com/afragen/skip-updates/blob/main/CHANGES.md).
+
+#### 1.1.3 / 2023-07-21
+* add developery stuff
+* update tested to
 
 #### 1.1.2 / 2022-05-10
 * updated tested to
