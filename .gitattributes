@@ -4,3 +4,12 @@
 .gitignore export-ignore
 composer.lock export-ignore
 /.github export-ignore
+.editorconfig export-ignore
+composer.lock export-ignore
+phpunit.xml export-ignore
+phpcs.xml export-ignore
+phpcs.xml.dist export-ignore
+.phpcs.xml export-ignore
+/bin export-ignore
+/tests export-ignore
+/wiki-assets export-ignore
