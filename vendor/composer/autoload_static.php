@@ -11,12 +11,20 @@ class ComposerStaticInit83a858263d26671008e693807d4deb50
         array (
             'Fragen\\Skip_Updates\\' => 20,
         ),
+        'D' => 
+        array (
+            'Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\' => 55,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
         'Fragen\\Skip_Updates\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src/Skip_Updates',
+        ),
+        'Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dealerdirect/phpcodesniffer-composer-installer/src',
         ),
     );
 
