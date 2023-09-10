@@ -75,7 +75,6 @@ class SU_List_Table extends \WP_List_Table {
 				'ajax'     => false,      // does this table support ajax?
 			]
 		);
-
 	}
 
 	/**
