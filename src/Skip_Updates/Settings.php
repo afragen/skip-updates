@@ -296,5 +296,4 @@ class Settings {
 
 		return $option[ $slug ]['dot_org'];
 	}
-
 }
