@@ -5,7 +5,7 @@
 * Requires at least: 5.2
 * Requires PHP: 5.6
 * Tested up to: 6.3
-* Stable tag: 1.1.3
+* Stable tag: 1.2.0
 * Donate link: http://thefragens.com/github-updater-donate
 * License: MIT
 
@@ -27,6 +27,9 @@ PRs are welcome against the `develop` branch.
 ## Changelog
 
 Please see the Github repository: [CHANGELOG.md](https://github.com/afragen/skip-updates/blob/main/CHANGES.md).
+
+#### 1.2.0 / 2023-09-10
+* update to WPCS 3.0.0
 
 #### 1.1.3 / 2023-07-21
 * add developery stuff

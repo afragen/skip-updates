@@ -1,5 +1,8 @@
 #### [unreleased]
 
+#### 1.2.0 / 2023-09-10
+* update to WPCS 3.0.0
+
 #### 1.1.3 / 2023-07-21
 * add developery stuff
 * update tested to
