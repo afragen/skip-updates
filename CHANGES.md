@@ -1,4 +1,7 @@
 #### [unreleased]
+
+#### 1.2.1 / 2024-07-11
+* update tested to
 * composer update
 
 #### 1.2.0 / 2023-09-10
