@@ -4,7 +4,7 @@
 * Tags: skip, update
 * Requires at least: 5.2
 * Requires PHP: 5.6
-* Tested up to: 6.3
+* Tested up to: 6.6
 * Stable tag: 1.2.0
 * Donate link: http://thefragens.com/github-updater-donate
 * License: MIT
