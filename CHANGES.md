@@ -1,4 +1,5 @@
 #### [unreleased]
+* remove `load_plugin_textdomain()`
 
 #### 1.2.1 / 2024-07-11
 * update tested to
