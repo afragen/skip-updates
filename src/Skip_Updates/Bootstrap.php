@@ -17,14 +17,6 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-// Load textdomain.
-add_action(
-	'init',
-	function () {
-		load_plugin_textdomain( 'skip-updates' );
-	}
-);
-
 /**
  * Class Bootstrap
  */
