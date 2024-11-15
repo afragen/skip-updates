@@ -33,9 +33,6 @@
     }
   },
   "scripts": {
-    "make-pot": [
-      "wp i18n make-pot . languages/skip-updates.pot"
-    ],
     "wpcs": [
       "vendor/bin/phpcbf .; vendor/bin/phpcs ."
     ]

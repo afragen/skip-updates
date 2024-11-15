@@ -1,4 +1,5 @@
 #### [unreleased]
+* add GitHub Action to make-pot
 
 #### 1.2.2 / 2024-11-01
 * remove `load_plugin_textdomain()`
