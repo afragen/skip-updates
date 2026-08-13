@@ -1,5 +1,9 @@
 #### [unreleased]
 
+#### 1.2.3 / 2026-08-13
+* add GitHub Actions
+* update tested to
+
 #### 1.2.2 / 2024-11-01
 * remove `load_plugin_textdomain()`
 * composer update
