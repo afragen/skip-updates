@@ -1,40 +1,39 @@
 {
-  "name": "afragen/skip-updates",
-  "description": "Skip updates for selected dot org plugins or themes.",
-  "type": "wordpress-plugin",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Andy Fragen",
-      "email": "andy@thefragens.com",
-      "homepage": "https://thefragens.com",
-      "role": "Developer"
-    }
-  ],
-  "support": {
-    "issues": "https://github.com/afragen/skip-updates/issues",
-    "source": "https://github.com/afragen/skip-updates"
-  },
-  "prefer-stable": true,
-  "require": {
-    "php": ">=5.6"
-  },
-  "require-dev": {
-    "wp-coding-standards/wpcs": "^3.0.0"
-  },
-  "config": {
-    "allow-plugins": {
-      "dealerdirect/phpcodesniffer-composer-installer": true
-    }
-  },
-  "autoload": {
-    "psr-4": {
-      "Fragen\\Skip_Updates\\": "src/Skip_Updates/"
-    }
-  },
-  "scripts": {
-    "wpcs": [
-      "vendor/bin/phpcbf .; vendor/bin/phpcs ."
-    ]
-  }
+	"name": "afragen/skip-updates",
+	"description": "Skip updates for selected dot org plugins or themes.",
+	"type": "wordpress-plugin",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Andy Fragen",
+			"email": "andy@thefragens.com",
+			"homepage": "https://thefragens.com",
+			"role": "Developer"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/afragen/skip-updates/issues",
+		"source": "https://github.com/afragen/skip-updates"
+	},
+	"prefer-stable": true,
+	"require": {
+		"php": ">=5.6"
+	},
+	"require-dev": {
+		"wp-coding-standards/wpcs": "^3.0.0"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	},
+	"autoload": {
+		"psr-4": {
+			"Fragen\\Skip_Updates\\": "src/Skip_Updates/"
+		}
+	},
+	"scripts": {
+		"lint": "@php ./vendor/bin/phpcs .",
+		"format": "@php ./vendor/bin/phpcbf ."
+	}
 }
